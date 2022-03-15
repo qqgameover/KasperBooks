@@ -68,20 +68,8 @@ void openSelectedFile(char *filen)
 
 void searchForFile(char* files[]) {
     char input[100];
-    char c;
-    int i = 0;
-    while(c != '\n') {
-        scanf("%c", &c); 
-        input[i] = c;
-        i++;
-    }
-    i++;
-    input[i] = '\0';
-    char *inputstr = "";
-    for(int index = 0; index < 100; index++) {
-        inputstr += input[index];
-        if(input[index] == '\0') break;
-    }
+    scanf("%s", input);
+    char *inputstr = &input[0];
     gotoxy(0, 1);
     for(int index = 0; index < amountOfFiles; index++) {
         char *file = strstr(files[index], inputstr);
@@ -128,8 +116,6 @@ int main (int argc, char **argv)
     termLines = term->lines;
     termColumns = term->columns;
     openDir();
-    while(isOpen == 1) {
-        searchForFile(allfiles);
-    }
+    searchForFile(allfiles);
     return 0;
 }
